@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <!-- SEO primário -->
+  <title>Infohelp Tatuí – Engenharia que devolve vida à sua tecnologia</title>
+  <meta name="description" content="Assistência técnica especializada em Tatuí: reparo de placas, MacBook, recuperação de dados, PC Gamer e microsoldagem. Autoridade técnica em @infohelptatui.">
+  <meta name="keywords" content="assistência técnica Tatuí, reparo de notebook, recuperação de dados, microsoldagem, Apple repair, PC Gamer, manutenção de placas de vídeo, Infohelp">
+  <meta name="author" content="Infohelp Tatuí">
+  <meta name="robots" content="index, follow">
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.infohelptatui.com.br/">
+  <meta property="og:title" content="Infohelp Tatuí – Especialistas em casos complexos">
+  <meta property="og:description" content="De placas condenadas à recuperação de dados críticos. Atendimento em Tatuí e região.">
+  <meta property="og:image" content="https://via.placeholder.com/1200x630/2a2a2a/FF8C00?text=Infohelp+Tatuí">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Infohelp Tatuí">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Infohelp Tatuí – Assistência técnica de alta performance">
+  <meta name="twitter:description" content="Recuperação de dados, reparo em placas e Apple. Técnicos especializados em Tatuí.">
+  <meta name="twitter:image" content="https://via.placeholder.com/1200x630/2a2a2a/FF8C00?text=Infohelp+Tatuí">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <!-- Google Fonts: Montserrat (títulos) e Inter (corpo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <!-- Font Awesome 5 (ícones) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ========== RESET E VARIÁVEIS ========== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --deep-blue: #2a2a2a;
+      --electric-blue: #FF8C00;
+      --slate-gray: #666666;
+      --white-smoke: #f5f5f5;
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      --transition-smooth: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --max-width: 1280px;
+      --border-radius: 24px;
+    }
+
+    /* ========== ANIMAÇÕES GLOBAIS ========== */
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      0% { transform: translateY(40px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(255, 140, 0, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(255, 140, 0, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 140, 0, 0); }
+    }
+
+    @keyframes iconFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes iconSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes iconPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    /* classe base para elementos que serão animados via intersection observer */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .animate-on-scroll.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* variações de delay */
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+
+    /* ========== ESTILOS GERAIS ========== */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--white-smoke);
+      color: #1e1e1e;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 80px 0;
+      position: relative;
+    }
+
+    /* ========== HEADER (vidro) ========== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(42, 42, 42, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 16px 0;
+    }
+
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .logo span {
+      color: var(--electric-blue);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-menu a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition-smooth);
+      border-bottom: 2px solid transparent;
+      padding-bottom: 4px;
+    }
+
+    .nav-menu a:hover {
+      color: var(--electric-blue);
+      border-bottom-color: var(--electric-blue);
+    }
+
+    /* ========== HERO SECTION ========== */
+    .hero {
+      min-height: 80vh;
+      background: linear-gradient(135deg, var(--deep-blue) 0%, #404040 100%);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+background: radial-gradient(circle, rgba(255,140,0,0.1) 0%, transparent 70%);
+      top: -50%;
+      left: -50%;
+      animation: fadeIn 3s infinite alternate;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      color: white;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 .highlight {
+      color: var(--electric-blue);
+      border-bottom: 4px solid var(--electric-blue);
+      display: inline-block;
+    }
+
+    .hero p {
+      font-size: clamp(1.2rem, 4vw, 1.5rem);
+      margin-bottom: 32px;
+      opacity: 0.9;
+      max-width: 600px;
+    }
+
+    .cta-button {
+      display: inline-block;
+background: var(--electric-blue);
+      color: white;
+      padding: 16px 40px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 1px;
+      box-shadow: 0 10px 20px rgba(255,140,0,0.3);
+      transition: var(--transition-smooth);
+      border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(4px);
+    }
+
+    .cta-button:hover {
+      background: #E67E00;
+      transform: translateY(-4px);
+      box-shadow: 0 15px 30px rgba(255,140,0,0.4);
+    }
+
+    /* ========== CARDS DE TÉCNICOS ========== */
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 48px;
+      text-align: center;
+      color: var(--deep-blue);
+    }
+
+    .section-title span {
+      color: var(--electric-blue);
+    }
+
+    .technicians-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+    }
+
+    .tech-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+      padding: 32px 24px;
+      box-shadow: var(--card-shadow);
+      transition: var(--transition-smooth);
+      text-align: center;
+      color: var(--deep-blue);
+      background: rgba(255,255,255,0.7);
+    }
+
+    .tech-card:hover {
+      transform: translateY(-10px);
+      background: white;
+      border-color: var(--electric-blue);
+    }
+
+    .tech-icon {
+      font-size: 3rem;
+      color: var(--electric-blue);
+      margin-bottom: 16px;
+      animation: iconFloat 3s ease-in-out infinite;
+    }
+
+    .tech-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+
+    .tech-card .role {
+      font-weight: 600;
+      color: var(--electric-blue);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+    }
+
+    .tech-card p {
+      color: var(--slate-gray);
+      font-size: 0.95rem;
+    }
+
+    /* ========== SERVIÇOS ========== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .service-item {
+      background: white;
+      border-radius: 20px;
+      padding: 28px 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      text-align: center;
+      border-bottom: 4px solid transparent;
+      transition: var(--transition-smooth);
+    }
+
+    .service-item:hover {
+      border-bottom-color: var(--electric-blue);
+      transform: scale(1.02);
+    }
+
+    .service-icon {
+      font-size: 2.8rem;
+      color: var(--electric-blue);
+      margin-bottom: 16px;
+      animation: iconPulse 2s ease-in-out infinite;
+    }
+
+    .service-item h3 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+
+    .service-item p {
+      color: var(--slate-gray);
+    }
+
+    /* ========== DEPOIMENTOS ========== */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      background: linear-gradient(145deg, #ffffff, #f0f0f0);
+      border-radius: 30px;
+      padding: 32px;
+      box-shadow: 20px 20px 40px rgba(0,0,0,0.05);
+      position: relative;
+    }
+
+    .testimonial-card i.fa-quote-left {
+      color: var(--electric-blue);
+      opacity: 0.2;
+      font-size: 2rem;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 24px;
+      color: #333;
+    }
+
+    .testimonial-author {
+      font-weight: 700;
+      color: var(--deep-blue);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .author-avatar {
+      width: 48px;
+      height: 48px;
+      background: var(--electric-blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    /* ========== MAPA E FORMULÁRIO ========== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      background: white;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      grid-auto-flow: dense;
+    }
+
+    .contact-grid .contact-form {
+      order: -1;
+    }
+
+    .contact-grid .map-container {
+      order: 1;
+    }
+
+    .map-container {
+      width: 100%;
+      height: 100%;
+      min-height: 400px;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .contact-form {
+      padding: 40px;
+      background: var(--deep-blue);
+      color: white;
+    }
+
+    .contact-form h3 {
+      font-size: 2rem;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 1rem;
+      border: 1px solid transparent;
+      transition: var(--transition-smooth);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--electric-blue);
+      background: rgba(255,255,255,0.15);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255,255,255,0.6);
+    }
+
+    .btn-submit {
+      background: var(--electric-blue);
+      color: white;
+      border: none;
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      width: 100%;
+      font-size: 1.1rem;
+    }
+
+    .btn-submit:hover {
+      background: #E67E00;
+      transform: scale(1.02);
+    }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      background: var(--deep-blue);
+      color: white;
+      padding: 48px 0 24px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col p {
+      color: #a0a0a0;
+      margin: 16px 0;
+    }
+
+    .footer-col .social-links {
+      display: flex;
+      gap: 16px;
+      font-size: 1.5rem;
+    }
+
+    .social-links a {
+      color: white;
+      transition: var(--transition-smooth);
+      animation: iconSpin 2s linear infinite;
+    }
+
+    .social-links a:hover {
+      color: var(--electric-blue);
+      animation: none;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 24px;
+      border-top: 1px solid #555555;
+      font-size: 0.9rem;
+      color: #a0a0a0;
+    }
+
+    .footer-bottom a {
+      color: var(--electric-blue);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* ========== BOTÃO FLUTUANTE WHATSAPP ========== */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #25d366;
+      color: white;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+      z-index: 99;
+      transition: all 0.3s;
+      animation: pulse 2s infinite;
+      text-decoration: none;
+    }
+
+    .whatsapp-float:hover {
+      background: #20b859;
+      transform: scale(1.1);
+      animation: none;
+    }
+
+    /* ========== COOKIE BANNER ========== */
+    .cookie-banner {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      max-width: 400px;
+background: rgba(42, 42, 42, 0.95);
+      backdrop-filter: blur(10px);
+      color: white;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      z-index: 1000;
+      border: 1px solid var(--glass-border);
+    }
+
+    .cookie-banner p {
+      font-size: 0.9rem;
+    }
+
+    .cookie-btn {
+      background: var(--electric-blue);
+      border: none;
+      color: white;
+      padding: 8px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    /* ========== MODAL LGPD ========== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .modal-content {
+      background: white;
+      max-width: 700px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      border-radius: 32px;
+      padding: 40px;
+      position: relative;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--slate-gray);
+      transition: var(--transition-smooth);
+    }
+
+    .modal-close:hover {
+      color: var(--electric-blue);
+    }
+
+    .modal-content h2 {
+      color: var(--deep-blue);
+      margin-bottom: 24px;
+    }
+
+    .modal-content p {
+      margin-bottom: 16px;
+      color: #333;
+    }
+
+    /* ========== RESPONSIVIDADE ========== */
+    @media (max-width: 768px) {
+      .navbar .container {
+        flex-direction: column;
+        gap: 16px;
+      }
+      .nav-menu {
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .hero {
+        min-height: 60vh;
+        text-align: center;
+      }
+      .hero p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .map-container {
+        min-height: 300px;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+      .cookie-banner {
+        left: 10px;
+        right: 10px;
+        max-width: 100%;
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .technicians-grid, .services-grid, .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+      .whatsapp-float {
+        width: 56px;
+        height: 56px;
+        font-size: 1.8rem;
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+
+    /* ========== GALERIA LABORATÓRIO ========== */
+    .laboratory-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--border-radius);
+      box-shadow: var(--card-shadow);
+      transition: var(--transition-smooth);
+      cursor: pointer;
+      height: 280px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition-smooth);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,140,0,0.2);
+      opacity: 0;
+      transition: var(--transition-smooth);
+    }
+
+    .gallery-item:hover::after {
+      opacity: 1;
+    }
+
+    /* utilitários */
+    .text-center { text-align: center; }
+    .mt-2 { margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <!-- Header com glassmorphism -->
+  <header class="navbar">
+    <div class="container">
+      <div class="logo"><img src="images/logo.png" alt="Infohelp Tatuí Logo" style="height: 50px; width: auto;"></div>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#contato">Contato</a></li>
+          <li><a href="#tecnicos">Técnicos</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#depoimentos">Depoimentos</a></li>
+          <li><a href="#laboratorio">Laboratório</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="container hero-content">
+        <h1 class="animate-on-scroll">A Engenharia que <span class="highlight">Devolve a Vida</span> à sua Tecnologia</h1>
+        <p class="animate-on-scroll delay-1">Especialistas em casos complexos: de placas condenadas à recuperação de dados críticos em Tatuí e região.</p>
+        <a href="#contato" class="cta-button animate-on-scroll delay-2">Falar com especialista</a>
+      </div>
+    </section>
+
+    <!-- Mapa e Contato -->
+    <section id="contato" style="background: #fff;">
+      <div class="container">
+        <h2 class="section-title animate-on-scroll">Localização & <span>Contato</span></h2>
+        <div class="contact-grid animate-on-scroll delay-1">
+          <div class="contact-form">
+            <h3>Fale com a gente</h3>
+            <p style="margin-bottom:16px; font-size:0.95rem; color:#FF8C00; font-weight:600;">⚡ Agilize seu atendimento</p>
+            <form id="contactForm">
+              <div class="form-group">
+                <input type="text" id="name" name="name" placeholder="Seu nome" required>
+              </div>
+              <div class="form-group">
+                <input type="tel" id="phone" name="phone" placeholder="Seu celular (ex: 11 99999-9999)" required>
+              </div>
+              <div class="form-group">
+                <input type="text" id="model" name="model" placeholder="Modelo do computador (ex: Dell Inspiron 15, MacBook Pro)" required>
+              </div>
+              <div class="form-group">
+                <textarea id="message" name="message" rows="4" placeholder="Descreva seu problema" required></textarea>
+              </div>
+              <button type="submit" class="btn-submit">Enviar mensagem</button>
+              <p style="margin-top:16px; font-size:0.8rem; opacity:0.7;">✓ Entraremos em contato em até 24hrs</p>
+            </form>
+          </div>
+          <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3659.477287390377!2d-47.85583172548755!3d-23.355016754800116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c5d8b3b2b1b3b7%3A0x9b8b3b2b1b3b7b!2sR.%20Jos%C3%A9%20Braz%20de%20Almeida%2C%2060%20-%20Centro%2C%20Tatu%C3%AD%20-%20SP%2C%2018270-170!5e0!3m2!1spt-BR!2sbr!4v1711901234567!5m2!1spt-BR!2sbr" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Técnicos (3 cards com nomes e experiências solicitados) -->
+    <section id="tecnicos">
+      <div class="container">
+        <h2 class="section-title animate-on-scroll">Nossos <span>Especialistas</span></h2>
+        <div class="technicians-grid">
+          <!-- Hélio – 29 anos, especialista em notebooks -->
+          <div class="tech-card animate-on-scroll delay-1">
+            <div class="tech-icon"><i class="fas fa-laptop"></i></div>
+            <h3>Hélio</h3>
+            <div class="role">Fundador & Mestre em Notebooks</div>
+            <p>Com 29 anos de experiência, Hélio é referência em reparos complexos de notebooks, desde microsoldagem a problemas em placas lógicas. Atende casos que outros consideram sem solução.</p>
+          </div>
+          <!-- Vinícius – 5 anos, especialista em desktops -->
+          <div class="tech-card animate-on-scroll delay-2">
+            <div class="tech-icon"><i class="fas fa-desktop"></i></div>
+            <h3>Vinícius</h3>
+            <div class="role">Especialista em Desktops de Alto Desempenho</div>
+            <p>Com 5 anos de atuação, Vinícius domina a arte de montar e otimizar PCs de alta performance para gaming e workstations. Diagnóstico rápido e preciso para hardware e software.</p>
+          </div>
+          <!-- Cecília – 24 anos, gestão e coordenação técnica -->
+          <div class="tech-card animate-on-scroll delay-3">
+            <div class="tech-icon"><i class="fas fa-chart-line"></i></div>
+            <h3>Cecília</h3>
+            <div class="role">Gestora & Coordenadora Técnica</div>
+            <p>São 24 anos de experiência no setor, garantindo que cada serviço siga os mais altos padrões. Cecília supervisiona os processos, orçamentos e a experiência do cliente.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Serviços Detalhados -->
+    <section id="servicos" style="background: #fafafa;">
+      <div class="container">
+        <h2 class="section-title animate-on-scroll">Serviços <span>Premium</span></h2>
+        <div class="services-grid">
+          <div class="service-item animate-on-scroll delay-1">
+            <div class="service-icon"><i class="fas fa-tv"></i></div>
+            <h3>Restituição de Placas de Vídeo</h3>
+            <p>Diagnóstico e solução em nível de componente. RTX, GTX, RX. Substituição de chips e reballing.</p>
+          </div>
+          <div class="service-item animate-on-scroll delay-1">
+            <div class="service-icon"><i class="fab fa-apple"></i></div>
+            <h3>Serviços em MacBooks</h3>
+            <p>Especialistas Apple: solução de logic board, teclado, bateria e limpeza de líquido. Modelos antigos e novos.</p>
+          </div>
+          <div class="service-item animate-on-scroll delay-2">
+            <div class="service-icon"><i class="fas fa-water"></i></div>
+            <h3>Ressuscitação de Molhados</h3>
+            <p>Dispositivos com contato de líquido. Limpeza ultrassônica e reconstrução de trilhas.</p>
+          </div>
+          <div class="service-item animate-on-scroll delay-2">
+            <div class="service-icon"><i class="fas fa-server"></i></div>
+            <h3>Upgrade de Infraestrutura</h3>
+            <p>SSD, memória, redes e servidores. De escritórios a gamers, maximizamos a performance.</p>
+          </div>
+          <div class="service-item animate-on-scroll delay-3">
+            <div class="service-icon"><i class="fas fa-microchip"></i></div>
+            <h3>Recuperação de Dados Críticos</h3>
+            <p>Restauração segura de informações em HDDs, SSDs e mídia removível. Ambiente controlado antiestática.</p>
+          </div>
+          <div class="service-item animate-on-scroll delay-3">
+            <div class="service-icon"><i class="fas fa-microchip"></i></div>
+            <h3>Microsoldagem de Precisão</h3>
+            <p>Técnicas avançadas de soldagem para BGA, componentes finos e trilhas danificadas.</p>
+          </div>
+          <div class="service-item animate-on-scroll delay-4">
+            <div class="service-icon"><i class="fas fa-laptop"></i></div>
+            <h3>Otimização de Performance</h3>
+            <p>Limpeza de sistema, atualização de drivers e ajustes de BIOS para máximo desempenho.</p>
+          </div>
+          <div class="service-item animate-on-scroll delay-4">
+            <div class="service-icon"><i class="fas fa-lock"></i></div>
+            <h3>Segurança e Criptografia</h3>
+            <p>Varredura profunda em busca de vírus, malware e ameaças cibernéticas. Limpeza completa, proteção de dados e consultoria em segurança digital para máxima tranquilidade.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Depoimentos Reais -->
+    <section id="depoimentos">
+      <div class="container">
+        <h2 class="section-title animate-on-scroll">O que nossos <span>clientes</span> dizem</h2>
+        <div class="testimonials-grid">
+          <div class="testimonial-card animate-on-scroll delay-1">
+            <i class="fas fa-quote-left"></i>
+            <p class="testimonial-text">"Super recomendo, pra mim são os melhores .serviço sempre impecável e com preço justo !!! Saio sempre de Sorocaba só pra fazer com eles"</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">EA</div>
+              <div><strong>Encantos da Alice Doces e Salgados</strong></div>
+            </div>
+          </div>
+          <div class="testimonial-card animate-on-scroll delay-1">
+            <i class="fas fa-quote-left"></i>
+            <div class="testimonial-text">"Atendimento excelente, preço justo, serviço perfeito. Recuperação de placa de notebook, troca de teclado e HD. Montaram computador para meu trabalho atendendo todos requisitos. Indicam peças para compra - tudo de bom!!!"</div>
+            <div class="testimonial-author">
+              <div class="author-avatar">RT</div>
+              <div><strong>Rafaeli Tiepo</strong></div>
+            </div>
+          </div>
+          <div class="testimonial-card animate-on-scroll delay-2">
+            <i class="fas fa-quote-left"></i>
+            <div class="testimonial-text">"Serviço de excelente qualidade. Meu computador estava prestes a parar, achava que estava no fim da vida. Era falta de manutenção preventiva. O pessoal salvou meu notebook e me poupou de grande prejuízo. Recomendo de olhos fechados."</div>
+            <div class="testimonial-author">
+              <div class="author-avatar">AA</div>
+              <div><strong>Alexandre Andrade</strong></div>
+            </div>
+          </div>
+          <div class="testimonial-card animate-on-scroll delay-2">
+            <i class="fas fa-quote-left"></i>
+            <div class="testimonial-text">"Levei meu notebook com a alça da tela estourada e o recebi como novo. A alça totalmente recuperada e o notebook devidamente limpo, voltando a apresentar performance compatível com seu hardware, sem travamentos. Excelente serviço!"</div>
+            <div class="testimonial-author">
+              <div class="author-avatar">MA</div>
+              <div><strong>Mário Augusto Alves Oliveira Jr</strong></div>
+            </div>
+          </div>
+          <div class="testimonial-card animate-on-scroll delay-3">
+            <i class="fas fa-quote-left"></i>
+            <div class="testimonial-text">"Muita experiência. Além do suporte avançado, afirmo que são os únicos na região com esse know-how. Recuperaram meu notebook gamer que tinha sido descartado por outra assistência. Me pouparam de investir muito em máquina equivalente."</div>
+            <div class="testimonial-author">
+              <div class="author-avatar">RS</div>
+              <div><strong>Rafael dos Santos Ribeiro</strong></div>
+            </div>
+          </div>
+          <div class="testimonial-card animate-on-scroll delay-4">
+            <i class="fas fa-quote-left"></i>
+            <div class="testimonial-text">"Salvaram meu notebook depois que derramei açaí. Pensei que tinha perdido tudo. Equipe sensacional! Sempre muito prestativo conseguem resolver muitos problemas quase insolúveis dos notebooks da empresa, até notebook com banho de açaí já foi ressuscitado, indico a todos!"</div>
+            <div class="testimonial-author">
+              <div class="author-avatar">ML</div>
+              <div><strong>Murilo Santucci Lavezzo</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nosso Laboratório -->
+    <section id="laboratorio" style="background: #fafafa;">
+      <div class="container">
+        <h2 class="section-title animate-on-scroll">Nosso <span>Laboratório</span></h2>
+        <p style="text-align: center; margin-bottom: 48px; font-size: 1.1rem; color: var(--slate-gray); max-width: 700px; margin-left: auto; margin-right: auto;" class="animate-on-scroll delay-1">Conheça nossa estrutura de ponta, onde a tecnologia encontra a expertise. Equipamentos de precisão e ambiente controlado para os melhores resultados.</p>
+        <div class="laboratory-grid animate-on-scroll delay-1">
+          <div class="gallery-item">
+            <img src="./images/2024-07-08.webp" alt="Laboratório Infohelp - Ambiente de trabalho">
+          </div>
+          <div class="gallery-item">
+            <img src="./images/2024-07-08 (1).webp" alt="Laboratório Infohelp - Microscópio e ferramentas">
+          </div>
+          <div class="gallery-item">
+            <img src="./images/2024-07-08 (2).webp" alt="Laboratório Infohelp - Estação de testes">
+          </div>
+          <div class="gallery-item">
+            <img src="./images/2024-07-08 (3).webp" alt="Laboratório Infohelp - Equipamento de diagnóstico">
+          </div>
+          <div class="gallery-item">
+            <img src="./images/2024-07-08 (4).webp" alt="Laboratório Infohelp - Workspace">
+          </div>
+          <div class="gallery-item">
+            <img src="./images/2024-07-08 (5).webp" alt="Laboratório Infohelp - Ferramentas especializadas">
+          </div>
+          <div class="gallery-item">
+            <img src="./images/2024-07-08 (6).webp" alt="Laboratório Infohelp - Estação de reparo">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <div class="logo"><img src="images/logo.png" alt="Infohelp Tatuí Logo" style="height: 50px; width: auto;"></div>
+          <p>Excelência em reparo eletrônico e recuperação de dados. Atendimento em Tatuí e toda região.</p>
+          <div class="social-links">
+            <a href="https://instagram.com/infohelptatui" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/5515991172115" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Links rápidos</h4>
+          <ul style="list-style:none;">
+            <li><a href="#home" style="color:#a0a0a0; text-decoration:none;">Home</a></li>
+            <li><a href="#tecnicos" style="color:#a0a0a0; text-decoration:none;">Técnicos</a></li>
+            <li><a href="#servicos" style="color:#a0a0a0; text-decoration:none;">Serviços</a></li>
+            <li><a href="#depoimentos" style="color:#a0a0a0; text-decoration:none;">Depoimentos</a></li>
+            <li><a href="#laboratorio" style="color:#a0a0a0; text-decoration:none;">Laboratório</a></li>
+            <li><a href="#contato" style="color:#a0a0a0; text-decoration:none;">Contato</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>LGPD</h4>
+          <p><a href="#" id="openModalLink" style="color:var(--electric-blue);">Política de Privacidade</a></p>
+          <p>© 2025 Infohelp Tatuí</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Developed by <a href="#">Vinicius Peixoto</a>. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/5515991172115?text=Olá,%20preciso%20de%20ajuda%20com%20meu%20equipamento!" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Cookie Banner -->
+  <div id="cookieBanner" class="cookie-banner">
+    <p>Usamos cookies para melhorar sua experiência. Ao continuar, você concorda com nossa <a href="#" id="cookiePolicyLink" style="color:var(--electric-blue);">Política de Privacidade</a>.</p>
+    <button id="acceptCookies" class="cookie-btn">Aceitar</button>
+  </div>
+
+  <!-- Modal LGPD (Política de Privacidade) -->
+  <div id="privacyModal" class="modal-overlay">
+    <div class="modal-content">
+      <span class="modal-close" id="closeModal">&times;</span>
+      <h2>Política de Privacidade (LGPD)</h2>
+      <p>A Infohelp Tatuí, inscrita sob CNPJ 12.345.678/0001-90, valoriza a privacidade dos seus clientes. Esta Política de Privacidade descreve como coletamos, usamos e protegemos suas informações pessoais em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018).</p>
+      <p><strong>1. Dados coletados:</strong> Nome, e-mail, telefone, informações sobre seu equipamento e eventuais dados fornecidos em formulários ou atendimento.</p>
+      <p><strong>2. Finalidade:</strong> Os dados são utilizados para orçamentos, prestação de serviços, contato pós-venda e melhoria da nossa assistência. Não compartilhamos com terceiros sem sua autorização, exceto quando necessário para cumprimento de obrigações legais.</p>
+      <p><strong>3. Armazenamento:</strong> Seus dados são mantidos em ambiente seguro e acessíveis apenas por nossos técnicos e administradores. Você pode solicitar a exclusão a qualquer momento pelo e-mail contato@infohelptatui.com.br.</p>
+      <p><strong>4. Cookies:</strong> Utilizamos cookies essenciais para navegação. Ao continuar, você consente com o uso.</p>
+      <p><strong>5. Seus direitos:</strong> Você tem direito a acessar, corrigir, anonimizar ou excluir seus dados, bem como revogar o consentimento. Para exercer seus direitos, entre em contato pelo e-mail lgpd@infohelptatui.com.br.</p>
+      <p><strong>6. Atualizações:</strong> Esta política pode ser atualizada periodicamente. Recomendamos revisar esta página.</p>
+      <p>Última atualização: janeiro de 2025.</p>
+    </div>
+  </div>
+
+  <!-- JavaScript (Vanilla, ES6+) -->
+  <script>
+    (function() {
+      "use strict";
+
+      // ---------- INTERSECTION OBSERVER (animações de scroll) ----------
+      const animatedElements = document.querySelectorAll('.animate-on-scroll');
+      if (animatedElements.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animated');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
+
+        animatedElements.forEach(el => observer.observe(el));
+      }
+
+      // ---------- COOKIE BANNER (localStorage) ----------
+      const cookieBanner = document.getElementById('cookieBanner');
+      const acceptBtn = document.getElementById('acceptCookies');
+      const cookiePolicyLink = document.getElementById('cookiePolicyLink');
+      const openModalLink = document.getElementById('openModalLink');
+      const modal = document.getElementById('privacyModal');
+      const closeModal = document.getElementById('closeModal');
+
+      // Mostrar cookie banner ao abrir o site
+      cookieBanner.style.display = 'flex';
+
+      acceptBtn.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'accepted');
+        cookieBanner.style.display = 'none';
+      });
+
+      function openModal() {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModalFn() {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+
+      if (openModalLink) {
+        openModalLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          openModal();
+        });
+      }
+
+      if (cookiePolicyLink) {
+        cookiePolicyLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          openModal();
+        });
+      }
+
+      if (closeModal) {
+        closeModal.addEventListener('click', closeModalFn);
+      }
+
+      window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          closeModalFn();
+        }
+      });
+
+      // ---------- FORMULÁRIO DE CONTATO COM VALIDAÇÃO ----------
+      const contactForm = document.getElementById('contactForm');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+
+          const name = document.getElementById('name').value.trim();
+          const phone = document.getElementById('phone').value.trim();
+          const model = document.getElementById('model').value.trim();
+          const message = document.getElementById('message').value.trim();
+
+          if (!name || !phone || !model || !message) {
+            alert('Por favor, preencha todos os campos.');
+            return;
+          }
+
+          // Verifica se o celular do usuário é válido
+          const cleanUserPhone = phone.replace(/\D/g, '');
+          
+          if (cleanUserPhone.length < 10) {
+            alert('Por favor, insira um celular válido.');
+            return;
+          }
+
+          // Número da Infohelp para receber a mensagem
+          const infohelpWhatsapp = '5515991172115';
+
+          // Monta a mensagem para enviar no WhatsApp (para a Infohelp)
+          const whatsappMessage = `Olá! Meu nome é ${name}.\n\nMeu celular: ${phone}\n\nModelo do computador: ${model}\n\nProblema:\n${message}`;
+          
+          // Codifica a mensagem para URL
+          const encodedMessage = encodeURIComponent(whatsappMessage);
+          
+          // Salva o consentimento
+          localStorage.setItem('cookieConsent', 'accepted');
+          
+          // Mostra mensagem de sucesso
+          alert(`Obrigado ${name}! Você será redirecionado para o WhatsApp. Entraremos em contato em até 24hrs!`);
+          
+          // Redireciona para WhatsApp da Infohelp
+          window.location.href = `https://wa.me/${infohelpWhatsapp}?text=${encodedMessage}`;
+          
+          contactForm.reset();
+        });
+      }
+
+      // ---------- SCROLL SUAVE PARA LINKS INTERNOS ----------
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href === "#" || href === "") return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      // ---------- EFEITO HEADER AO ROLAR ----------
+      const navbar = document.querySelector('.navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+  navbar.style.background = 'rgba(42, 42, 42, 0.95)';
+        } else {
+          navbar.style.background = 'rgba(42, 42, 42, 0.85)';
+        }
+      });
+
+      // ---------- DADOS ESTRUTURADOS (JSON-LD) para LocalBusiness ----------
+      const scriptLd = document.createElement('script');
+      scriptLd.type = 'application/ld+json';
+      scriptLd.text = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Infohelp Tatuí",
+        "image": "https://via.placeholder.com/1200x630/2a2a2a/FF8C00?text=Infohelp+Tatuí",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "R. José Braz de Almeida, 60",
+          "addressLocality": "Tatuí",
+          "addressRegion": "SP",
+          "postalCode": "18270-170",
+          "addressCountry": "BR"
+        },
+        "telephone": "+5515991172115",
+        "priceRange": "$$",
+        "openingHours": "Mo-Fr 09:00-18:00",
+        "url": "https://www.infohelptatui.com.br",
+        "sameAs": [
+          "https://www.instagram.com/infohelptatui"
+        ],
+        "description": "Assistência técnica especializada em Tatuí: reparo de placas, MacBook, recuperação de dados, PC Gamer e microsoldagem.",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "127"
+        }
+      });
+      document.head.appendChild(scriptLd);
+    })();
+  </script>
+
+  <!-- Meta tags adicionais (geo) -->
+  <meta name="geo.region" content="BR-SP">
+  <meta name="geo.placename" content="Tatuí">
+  <meta name="geo.position" content="-23.3550;-47.8558">
+  <meta name="ICBM" content="-23.3550, -47.8558">
+</body>
+</html>
